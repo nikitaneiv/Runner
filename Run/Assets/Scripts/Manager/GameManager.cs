@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-
+    [SerializeField] private AdController _adController;
     [SerializeField] private Level _level;
     [SerializeField] private UIManager _uiManager;
     [SerializeField] private Text _crystallText;
@@ -66,6 +66,8 @@ public class GameManager : MonoBehaviour
 
     public void Win()
     {
+        _adController.ShowInterstitial();
+
         _uiManager.ShowWinScreen();
         SaveData();
     }
@@ -85,5 +87,10 @@ public class GameManager : MonoBehaviour
     {
         _playerData.CrystallCount++;
         _crystallText.text = _playerData.CrystallCount.ToString();
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
